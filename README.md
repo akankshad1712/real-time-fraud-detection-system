@@ -1,162 +1,227 @@
+
 <div align="center">
 
-# ◈ SENTINEL
-### Real-Time Fraud Detection Platform
-
-**A streaming-first fraud analytics system built for speed, clarity, and explainability.**
-
-Java 11 · Apache Kafka · Hadoop MapReduce · Maven · Docker
+<img src="https://capsule-render.vercel.app/api?type=rect&height=240&text=SENTINEL&fontSize=72&fontColor=F8FAFC&fontAlignY=40&desc=REAL-TIME%20FRAUD%20DETECTION%20PLATFORM&descSize=17&descAlignY=65&color=0:0B1020,50:172554,100:312E81" width="100%" alt="SENTINEL — Real-Time Fraud Detection Platform" />
 
 <br/>
 
-![Java](https://img.shields.io/badge/Java-11-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
-![Kafka](https://img.shields.io/badge/Apache_Kafka-Streaming-231F20?style=for-the-badge&logo=apachekafka&logoColor=white)
-![Hadoop](https://img.shields.io/badge/Apache_Hadoop-Batch_Analytics-66CCFF?style=for-the-badge&logo=apachehadoop&logoColor=101820)
-![Docker](https://img.shields.io/badge/Docker-Local_Environment-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![License](https://img.shields.io/badge/License-Choose_Your_License-64748B?style=for-the-badge)
+# SEE THE SIGNAL. EXPLAIN THE ALERT.
 
-[Architecture](#-architecture) · [Quick Start](#-quick-start) · [Features](#-what-it-does) · [API & Events](#-event-contracts) · [Roadmap](#-roadmap)
+**An event-driven fraud detection platform built with Java, Apache Kafka, and Hadoop MapReduce.**
+
+Designed to demonstrate real-time event processing, transparent detection rules, and distributed batch analytics.
 
 <br/>
 
-> **Project concept:** detect suspicious activity as transactions stream in, publish explainable alerts, and analyze historical transaction patterns in batch.
+[![Java](https://img.shields.io/badge/Java-11-ED8B00?style=flat-square&logo=openjdk&logoColor=white)](https://www.java.com/)
+[![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka-Event%20Streaming-231F20?style=flat-square&logo=apachekafka&logoColor=white)](https://kafka.apache.org/)
+[![Hadoop](https://img.shields.io/badge/Apache%20Hadoop-Batch%20Analytics-66CCFF?style=flat-square&logo=apachehadoop&logoColor=101820)](https://hadoop.apache.org/)
+[![Docker](https://img.shields.io/badge/Docker-Containerized%20Environment-2496ED?style=flat-square&logo=docker&logoColor=white)](https://www.docker.com/)
+[![Maven](https://img.shields.io/badge/Maven-Build%20Automation-C71A36?style=flat-square&logo=apachemaven&logoColor=white)](https://maven.apache.org/)
+
+<br/>
+
+**[Architecture](#-architecture) · [Features](#-core-capabilities) · [Quick Start](#-quick-start) · [Detection Rules](#-detection-engine) · [Roadmap](#-roadmap)**
+
+<br/>
+
+<img src="https://img.shields.io/badge/01-STREAM-818CF8?style=for-the-badge" alt="Stream" />
+<img src="https://img.shields.io/badge/02-DETECT-F472B6?style=for-the-badge" alt="Detect" />
+<img src="https://img.shields.io/badge/03-ANALYZE-34D399?style=for-the-badge" alt="Analyze" />
+
+<br/><br/>
+
+**Created by Akanksha Deshmukh**
 
 </div>
 
 ---
 
-## ✦ Product vision
+> [!IMPORTANT]
+> **Project scope:** SENTINEL is an educational engineering and portfolio project using synthetic transaction data and illustrative rules. It is not a production fraud prevention service. A flagged transaction is not proof of fraud.
 
-Financial events arrive continuously. A useful detection pipeline needs to do more than inspect a number: it needs to process events reliably, explain why an event was flagged, and make historical patterns easier to investigate.
+## ◈ 01 — The vision
 
-**Sentinel** is a developer-focused portfolio project demonstrating those core building blocks:
+Financial transactions move continuously. The challenge is not simply to identify an unusually large amount. A useful monitoring pipeline must process events, explain why a rule matched, and retain enough context to support investigation.
 
-- **Stream** synthetic transactions through Kafka.
-- **Evaluate** events with small, explainable Java rules.
-- **Alert** by publishing structured fraud events to a dedicated topic.
-- **Analyze** transaction history with a Hadoop MapReduce job.
-- **Inspect** the local Kafka environment through a lightweight web UI.
+**SENTINEL explores that workflow through an event-driven architecture.**
 
-> **Important:** Sentinel is an educational demonstration, not a production payment-control system. Its threshold-based rules are not proof of fraud and should never be used to decline real transactions.
+It combines a Kafka-based streaming pipeline with a separate Hadoop MapReduce analytics path, demonstrating how real-time event processing and historical aggregation can coexist in one project.
 
-## ◈ Architecture
+<div align="center">
+
+| STREAM | DETECT | EXPLAIN | ANALYZE |
+|:---:|:---:|:---:|:---:|
+| Kafka events | Java rules | Reason codes | MapReduce |
+
+</div>
+
+## ✦ 02 — Core capabilities
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### ⚡ Real-time ingestion
+
+Produce synthetic transaction events with Java and send them to Apache Kafka for downstream processing.
+
+**Key concepts**
+- Event-driven architecture
+- Kafka producer and consumer APIs
+- Transaction topic
+
+</td>
+<td width="50%" valign="top">
+
+### 🛡️ Explainable detection
+
+Evaluate incoming events with simple, configurable rules and produce human-readable reasons when a rule matches.
+
+**Key concepts**
+- Threshold-based detection
+- Input validation
+- Explicit reason codes
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+### 🔔 Structured fraud alerts
+
+Publish matched events to a dedicated Kafka topic, preserving transaction context and source metadata for inspection.
+
+**Key concepts**
+- Alert event structure
+- Source partition and offset
+- Acknowledged publication
+
+</td>
+<td width="50%" valign="top">
+
+### 📊 Historical analytics
+
+Use Hadoop MapReduce to summarize transaction history by account.
+
+**Key concepts**
+- Distributed batch processing
+- Transaction count
+- Total and maximum amount
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+### 🧪 Automated tests
+
+Use JUnit to verify selected rule behaviors, including threshold detection and missing amounts.
+
+</td>
+<td width="50%" valign="top">
+
+### 🧰 Local development
+
+Use Docker Compose and Kafka UI to run and inspect the local Kafka environment.
+
+</td>
+</tr>
+</table>
+
+## ◈ 03 — Architecture
 
 ```mermaid
 flowchart LR
-    subgraph STREAM["01 · REAL-TIME STREAM"]
+    subgraph REALTIME["01 · REAL-TIME PIPELINE"]
         P["Java Producer"] -->|"Transaction JSON"| T[("Kafka<br/>transactions")]
-        T --> C["Java Consumer<br/>Fraud Rules"]
+        T --> C["Java Consumer<br/>Detection Rules"]
         C -->|"No rule matched"| N["Continue processing"]
         C -->|"Rule matched"| A[("Kafka<br/>fraud-alerts")]
     end
 
     subgraph BATCH["02 · HISTORICAL ANALYTICS"]
-        F["JSONL transaction files<br/>or HDFS input"] --> M["Hadoop MapReduce"]
-        M --> R["Account aggregates<br/>count · total · max"]
+        F["JSONL Transaction Files"] --> M["Hadoop MapReduce"]
+        M --> R["Account Aggregates<br/>Count · Total · Maximum"]
     end
 
-    subgraph OBS["03 · LOCAL VISIBILITY"]
-        K["Kafka broker"] --> UI["Kafka UI<br/>localhost:8080"]
+    subgraph OBSERVABILITY["03 · LOCAL VISIBILITY"]
+        K["Kafka Broker"] --> UI["Kafka UI<br/>localhost:8080"]
     end
 
-    classDef source fill:#E0F2FE,stroke:#0284C7,color:#0C4A6E
-    classDef stream fill:#F3E8FF,stroke:#9333EA,color:#581C87
-    classDef alert fill:#FFE4E6,stroke:#E11D48,color:#881337
-    classDef batch fill:#DCFCE7,stroke:#16A34A,color:#14532D
-    classDef neutral fill:#F1F5F9,stroke:#64748B,color:#0F172A
-    class P,F source
+    classDef input fill:#DBEAFE,stroke:#60A5FA,color:#172554
+    classDef stream fill:#EDE9FE,stroke:#A78BFA,color:#4C1D95
+    classDef alert fill:#FFE4E6,stroke:#FB7185,color:#881337
+    classDef batch fill:#D1FAE5,stroke:#34D399,color:#064E3B
+    classDef neutral fill:#F1F5F9,stroke:#94A3B8,color:#0F172A
+
+    class P,F input
     class T,C stream
     class A alert
     class M,R batch
-    class N,UI,K neutral
+    class N,K,UI neutral
 ```
 
-### Event lifecycle
+### How the detection flow works
 
 ```mermaid
 flowchart TD
-    S([Transaction generated]) --> V{Valid JSON?}
-    V -->|No| X["Log malformed event<br/>Production: route to DLQ"]
-    V -->|Yes| E["Evaluate detection rules"]
-    E --> D{Any rule matched?}
-    D -->|No| OK["No alert emitted"]
-    D -->|Yes| AL["Create alert + reason codes"]
-    AL --> PUB["Publish to fraud-alerts"]
-    PUB --> COM["Commit consumed offsets"]
-    X --> NEXT([Next event / poll])
-    OK --> NEXT
-    COM --> NEXT
+    START(["Transaction received"]) --> VALID{"Valid JSON?"}
 
-    classDef decision fill:#FEF3C7,stroke:#D97706,color:#78350F
-    classDef good fill:#DCFCE7,stroke:#16A34A,color:#14532D
-    classDef warning fill:#FFE4E6,stroke:#E11D48,color:#881337
-    class V,D decision
-    class OK,COM good
-    class X,AL,PUB warning
+    VALID -->|No| INVALID["Log malformed event"]
+    VALID -->|Yes| RULES["Evaluate detection rules"]
+
+    RULES --> MATCH{"Any rule matched?"}
+
+    MATCH -->|No| NORMAL["No alert emitted"]
+    MATCH -->|Yes| ALERT["Build alert with reason codes"]
+
+    ALERT --> PUBLISH["Publish to fraud-alerts"]
+    PUBLISH --> COMMIT["Commit consumed offset"]
+
+    INVALID --> NEXT(["Next event"])
+    NORMAL --> NEXT
+    COMMIT --> NEXT
+
+    classDef decision fill:#FEF3C7,stroke:#F59E0B,color:#78350F
+    classDef good fill:#D1FAE5,stroke:#34D399,color:#064E3B
+    classDef warning fill:#FFE4E6,stroke:#FB7185,color:#881337
+
+    class VALID,MATCH decision
+    class NORMAL,COMMIT good
+    class INVALID,ALERT,PUBLISH warning
 ```
 
-### System boundaries
+### Technology responsibilities
 
-| Layer | Technology | Responsibility |
+| Component | Technology | Responsibility |
 |---|---|---|
-| Event generation | Java 11, Kafka Producer API | Produce synthetic transaction events |
-| Event transport | Apache Kafka | Buffer and distribute transaction streams |
-| Detection | Java 11, Kafka Consumer API | Evaluate rules and produce alert events |
-| Batch analytics | Hadoop MapReduce | Aggregate transactions per account |
-| Local observability | Kafka UI | Inspect topics and messages while developing |
-| Build | Maven | Compile modules, run tests, package JARs |
+| Transaction producer | Java 11 | Generate synthetic transaction events |
+| Event transport | Apache Kafka | Buffer and distribute event streams |
+| Detection consumer | Java 11 | Consume transactions and evaluate rules |
+| Alert stream | Kafka topic | Carry structured alert events |
+| Batch analytics | Hadoop MapReduce | Aggregate historical activity by account |
+| Local infrastructure | Docker Compose | Run development services |
+| Build and testing | Maven, JUnit | Build modules and test selected behavior |
 
-## ✦ What it does
+## ✦ 04 — Detection engine
 
-<table>
-  <tr>
-    <td width="50%">
-      <h3>⚡ Streaming ingestion</h3>
-      Sends transaction events to Kafka using keyed records and reliable producer settings.
-    </td>
-    <td width="50%">
-      <h3>🛡 Explainable rules</h3>
-      Flags suspicious events with human-readable reason codes instead of a mysterious score.
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <h3>🔔 Dedicated alert stream</h3>
-      Publishes structured alerts to <code>fraud-alerts</code> for downstream investigation tools.
-    </td>
-    <td width="50%">
-      <h3>📊 Batch analytics</h3>
-      Calculates per-account transaction count, total amount, and maximum amount.
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <h3>🧪 Automated rule tests</h3>
-      Includes unit tests for threshold detection, ordinary transactions, and missing amounts.
-    </td>
-    <td width="50%">
-      <h3>🧰 Local developer setup</h3>
-      Starts Kafka and Kafka UI through Docker Compose for a repeatable demo environment.
-    </td>
-  </tr>
-</table>
+The demo uses a configurable threshold. Its default is `1000.00` in the transaction's declared currency, and the sample producer uses INR.
 
-## ✦ Detection rules
-
-The default threshold is `1000.00` in the transaction's declared currency. The demo producer uses INR.
-
-| Rule | Trigger | Reason code |
+| Detection rule | Condition | Reason code |
 |---|---|---|
-| High amount | Amount is greater than or equal to configured threshold | `HIGH_AMOUNT` |
-| Missing amount | `amount` is missing or null | `MISSING_AMOUNT` |
+| High amount | Amount is greater than or equal to the configured threshold | `HIGH_AMOUNT` |
+| Missing amount | `amount` is absent or null | `MISSING_AMOUNT` |
 | Invalid amount | Amount cannot be parsed as a decimal | `INVALID_AMOUNT` |
 | Negative amount | Amount is below zero | `NEGATIVE_AMOUNT` |
-| Missing transaction ID | ID is blank or missing | `MISSING_TRANSACTION_ID` |
-| Missing account ID | Account ID is blank or missing | `MISSING_ACCOUNT_ID` |
+| Missing transaction ID | Transaction ID is blank or absent | `MISSING_TRANSACTION_ID` |
+| Missing account ID | Account ID is blank or absent | `MISSING_ACCOUNT_ID` |
 
-Configure the threshold with `FRAUD_AMOUNT_THRESHOLD`. This is intentionally a simple baseline: a large amount alone does **not** mean a transaction is fraudulent.
+Configure the threshold with `FRAUD_AMOUNT_THRESHOLD`.
 
-## ◈ Repository map
+> **Design principle:** a rule match should be explainable, but explainability alone does not make a rule accurate. A large transaction may be legitimate. Real fraud detection needs contextual signals, calibrated rules, labeled evaluation data, and false-positive analysis.
+
+## ◈ 05 — Repository structure
 
 ```text
 real-time-fraud-detection-system/
@@ -166,9 +231,9 @@ real-time-fraud-detection-system/
 │       └── TransactionProducer.java
 ├── consumer/
 │   ├── pom.xml
-│   └── src/main/java/com/akanksha/fraud/consumer/
-│       ├── FraudDetector.java
-│       └── TransactionConsumer.java
+│   ├── src/main/java/com/akanksha/fraud/consumer/
+│   │   ├── FraudDetector.java
+│   │   └── TransactionConsumer.java
 │   └── src/test/java/com/akanksha/fraud/consumer/
 │       └── FraudDetectorTest.java
 ├── mapreduce/
@@ -182,18 +247,18 @@ real-time-fraud-detection-system/
 └── README.md
 ```
 
-## ✦ Quick start
+## ⚡ 06 — Quick start
 
 ### Prerequisites
 
-Install the following before starting:
+Install the following tools:
 
 - **JDK 11**
 - **Maven 3.8+**
 - **Docker Desktop** or Docker Engine with Compose
-- **Hadoop 3.3.x** only for running the MapReduce job
+- **Hadoop 3.3.x**, only if running the MapReduce job
 
-Verify your tools:
+Verify the installations:
 
 ```bash
 java -version
@@ -202,18 +267,20 @@ docker --version
 docker compose version
 ```
 
-### 1 — Start the local infrastructure
+### Step 1 — Start the local environment
 
-From the repository root:
+Run these commands from the repository root:
 
 ```bash
 docker compose up -d
 docker compose ps
 ```
 
-Open **Kafka UI** at [http://localhost:8080](http://localhost:8080).
+Open **Kafka UI** in your browser:
 
-### 2 — Create Kafka topics
+[http://localhost:8080](http://localhost:8080)
+
+### Step 2 — Create Kafka topics
 
 ```bash
 docker compose exec kafka kafka-topics \
@@ -227,13 +294,13 @@ docker compose exec kafka kafka-topics \
   --topic fraud-alerts --partitions 3 --replication-factor 1
 ```
 
-### 3 — Build the project
+### Step 3 — Build the project
 
 ```bash
 mvn clean package
 ```
 
-### 4 — Start the fraud detector
+### Step 4 — Start the fraud detector
 
 Open a terminal at the project root:
 
@@ -241,13 +308,9 @@ Open a terminal at the project root:
 java -jar consumer/target/consumer-1.0.0.jar
 ```
 
-Expected startup log:
+The consumer should report the input topic and configured threshold. If it fails to start, inspect the exception and verify the Kafka broker and topic configuration.
 
-```text
-Fraud detector listening on transactions; threshold=1000.00
-```
-
-### 5 — Generate transactions
+### Step 5 — Produce synthetic transactions
 
 Open a second terminal:
 
@@ -255,53 +318,45 @@ Open a second terminal:
 java -jar producer/target/producer-1.0.0.jar
 ```
 
-The producer sends 100 sample events by default. Every tenth event is deliberately generated with an amount of `1000.00`, so the alert path is easy to demonstrate.
+**Windows PowerShell configuration:**
 
-Optional configuration:
-
-```bash
-TRANSACTION_COUNT=500 \
-PRODUCER_DELAY_MS=50 \
+```powershell
+$env:TRANSACTION_COUNT = "500"
+$env:PRODUCER_DELAY_MS = "50"
 java -jar producer/target/producer-1.0.0.jar
 ```
 
-Set a custom threshold for the consumer:
+To configure the threshold in the consumer's terminal:
 
-```bash
-FRAUD_AMOUNT_THRESHOLD=1500.00 \
+```powershell
+$env:FRAUD_AMOUNT_THRESHOLD = "1500.00"
 java -jar consumer/target/consumer-1.0.0.jar
 ```
 
-**Windows PowerShell:**
-
-```powershell
-$env:TRANSACTION_COUNT="500"
-$env:PRODUCER_DELAY_MS="50"
-java -jar producer/target/producer-1.0.0.jar
-```
-
-### 6 — Inspect the alerts
+### Step 6 — Inspect the alert stream
 
 In Kafka UI:
 
 1. Open the `fraud-alerts` topic.
-2. Inspect a message.
-3. Review `reasons` to understand why it was flagged.
-4. Check source topic, partition, and offset for traceability.
+2. Inspect a published message.
+3. Review the `reasons` array to identify the matched rule.
+4. Inspect the source topic, partition, and offset.
 
-Stop the local services when finished:
+### Step 7 — Shut down
 
 ```bash
 docker compose down
 ```
 
-## ✦ Batch analytics with Hadoop MapReduce
+Use `docker compose down -v` only when you intentionally want to remove Compose-managed volumes and their stored data.
 
-The MapReduce job processes newline-delimited JSON transaction files and outputs aggregates per account.
+## 📊 07 — Hadoop MapReduce analytics
 
-### Run in local mode
+The MapReduce job processes newline-delimited JSON transaction records and aggregates activity per account.
 
-From the repository root, with Hadoop configured for local execution:
+### Local execution
+
+With Hadoop configured for local execution:
 
 ```bash
 hadoop jar mapreduce/target/mapreduce-1.0.0.jar \
@@ -310,7 +365,7 @@ hadoop jar mapreduce/target/mapreduce-1.0.0.jar \
   output/account-aggregates
 ```
 
-If necessary, pass local-mode properties before the main class:
+If required by your Hadoop configuration:
 
 ```bash
 hadoop jar mapreduce/target/mapreduce-1.0.0.jar \
@@ -321,9 +376,9 @@ hadoop jar mapreduce/target/mapreduce-1.0.0.jar \
   output/account-aggregates
 ```
 
-The output directory must not already exist. Remove it before rerunning the same job.
+The output directory must not already exist before the job runs.
 
-### Run against HDFS
+### HDFS execution
 
 ```bash
 hdfs dfs -mkdir -p /fraud/input
@@ -337,35 +392,35 @@ hadoop jar mapreduce/target/mapreduce-1.0.0.jar \
 hdfs dfs -cat /fraud/output/account-aggregates/part-r-00000
 ```
 
-Example output shape:
+The job is intended to report per-account transaction count, total amount, and maximum amount.
 
-```text
-acct-1001    transactionCount=2    totalAmount=207.75    maxAmount=125.50
-acct-1002    transactionCount=2    totalAmount=1045.00   maxAmount=1000.00
-acct-1003    transactionCount=1    totalAmount=2500.00   maxAmount=2500.00
-```
+> [!NOTE]
+> The demo mapper uses lightweight extraction for simple JSONL records. For nested JSON, escaped strings, or evolving schemas, use a robust parser such as Jackson and define an explicit invalid-record path.
 
-> **Parsing limitation:** the demo MapReduce mapper uses a lightweight extractor for simple JSONL records. For arbitrary or nested JSON, escaped strings, and schema changes, use a robust JSON parser such as Jackson in the mapper and route invalid rows to a clearly defined error path.
+## 🧪 08 — Tests and verification
 
-## ✦ Test the detection rules
-
-Run the consumer module's unit tests:
+Run the consumer module's tests:
 
 ```bash
 mvn -pl consumer test
 ```
 
-Current test coverage includes:
+Run the full build and test suite:
 
-- Amount exactly at the threshold is flagged.
-- A normal amount is not flagged.
-- A missing amount is flagged.
+```bash
+mvn clean package
+mvn test
+```
 
-## ✦ Event contracts
+The existing tests cover selected behaviors, including threshold detection, a normal transaction, and a missing amount.
+
+**Before presenting the project as fully working, run the build and tests locally and verify the Kafka and MapReduce workflows in your environment.**
+
+## ◈ 09 — Event contracts
 
 ### Transaction event
 
-Topic: `transactions`
+**Topic:** `transactions`
 
 ```json
 {
@@ -378,18 +433,18 @@ Topic: `transactions`
 }
 ```
 
-| Field | Type | Meaning |
+| Field | Type | Description |
 |---|---|---|
-| `transactionId` | string | Unique identifier for the transaction |
-| `accountId` | string | Account associated with the event |
-| `amount` | decimal number | Transaction amount |
-| `merchant` | string | Merchant category or label |
+| `transactionId` | String | Unique transaction identifier |
+| `accountId` | String | Account associated with the event |
+| `amount` | Decimal number | Transaction amount |
+| `merchant` | String | Merchant category or label |
 | `timestamp` | ISO-8601 string | Event timestamp |
-| `currency` | string | Currency code, e.g. `INR` |
+| `currency` | String | Currency code, such as `INR` |
 
 ### Fraud alert event
 
-Topic: `fraud-alerts`
+**Topic:** `fraud-alerts`
 
 ```json
 {
@@ -410,59 +465,69 @@ Topic: `fraud-alerts`
 }
 ```
 
-The alert contains both the original transaction and reason codes so a downstream service can display an explainable case.
+The alert includes the original transaction and reason codes, allowing downstream tools to show why the event was flagged.
 
-## ◈ Reliability & engineering notes
+## ◈ 10 — Reliability and engineering decisions
 
-- Producer configuration enables `acks=all` and idempotence.
+- The producer is configured with `acks=all` and idempotence.
 - Consumer auto-commit is disabled.
-- The consumer waits for alert publish acknowledgements before committing consumed offsets.
-- Source topic, partition, and offset are included in alerts for traceability.
-- The processing approach is **at least once**, not exactly once. A crash after publishing an alert but before committing offsets can cause duplicate alerts.
-- Malformed events are currently logged. A production version should route them to a dead-letter topic and define retry limits.
-- The single-broker Docker setup is for local development, not high availability.
-- The current rules are illustrative; thresholds must be calibrated and evaluated before use in any real decision process.
+- The consumer waits for alert publication acknowledgement before committing consumed offsets.
+- Source topic, partition, and offset are included for traceability.
+- Delivery is **at least once**, not exactly once. A crash after publishing an alert but before committing the offset may result in a duplicate alert.
+- Malformed events are currently logged. A stronger implementation should add a dead-letter topic and bounded retry policies.
+- The single-broker Docker environment is for local development, not high availability.
+- The current rules are illustrative and should not be used for real financial decisions.
 
-## ✦ Roadmap
+## ✦ 11 — Roadmap
 
 - [ ] Add a Spring Boot REST API for alert search and case review.
 - [ ] Persist alerts in PostgreSQL or HBase.
-- [ ] Add a responsive monitoring dashboard with event volume, alert rate, and processing latency.
-- [ ] Add dead-letter handling and bounded retry policies.
+- [ ] Build a responsive dashboard for event volume, alert rate, and processing latency.
+- [ ] Add dead-letter handling and bounded retries.
 - [ ] Add idempotent alert storage and deduplication.
 - [ ] Add schema validation with Avro or Protobuf and a schema registry.
 - [ ] Add rolling-window velocity rules by account or device.
 - [ ] Add metrics for throughput, consumer lag, and false-positive rate.
 - [ ] Add CI checks, dependency scanning, container hardening, and secure configuration.
-- [ ] Evaluate rules against labeled data using precision, recall, and false-positive rate.
+- [ ] Evaluate rules using labeled data, precision, recall, and false-positive rate.
 
-## ✦ Security & responsible use
+## 🔐 12 — Security and responsible use
 
-- Use synthetic transactions only in this demo.
+- Use synthetic transaction data for demonstrations.
 - Never commit credentials, payment data, or personally identifiable information.
 - Do not use the sample threshold as a real fraud policy.
 - A real deployment requires access control, encryption, audit logging, retention controls, monitoring, and human review.
 
-## ✦ Contributing
+## 🤝 13 — Contributing
 
-Contributions are welcome. For a clean workflow:
+Improvements and thoughtful technical feedback are welcome.
 
 1. Create a focused branch.
 2. Make a small, testable change.
-3. Run `mvn clean package`.
-4. Update the README when behavior or configuration changes.
+3. Run `mvn clean package` and the relevant tests.
+4. Update the documentation when behavior or configuration changes.
 5. Open a pull request describing the design decision and test evidence.
 
 ## License
 
-No license has been selected yet. Add a `LICENSE` file before publishing this repository for reuse.
+No license has been selected yet. Add a `LICENSE` file before publishing the repository for reuse. Until then, do not assume others have permission to redistribute or modify the project.
 
 ---
 
 <div align="center">
 
-**Built to demonstrate streaming systems, explainable rules, and batch analytics.**
+<img src="https://capsule-render.vercel.app/api?type=rect&height=130&section=footer&text=ENGINEERED%20FOR%20CLARITY.&fontSize=25&fontColor=E2E8F0&fontAlignY=52&color=0:0B1020,100:312E81" width="100%" alt="Engineered for clarity" />
 
-<sub>Sentinel · Real-Time Fraud Detection Platform · Portfolio project</sub>
+<br/>
+
+### **SENTINEL**
+
+*Streaming systems · Distributed processing · Explainable detection*
+
+**Created by Akanksha Deshmukh**
+
+<br/>
+
+[![GitHub](https://img.shields.io/badge/GitHub-Explore%20the%20Code-181717?style=for-the-badge&logo=github)](https://github.com/akankshad1712)
 
 </div>
