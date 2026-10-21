@@ -1,0 +1,5 @@
+{"transactionId":"tx-001","accountId":"acct-1001","amount":125.50,"merchant":"grocery","timestamp":"2026-10-21T10:00:00Z","currency":"INR"}
+{"transactionId":"tx-002","accountId":"acct-1002","amount":1000.00,"merchant":"electronics","timestamp":"2026-10-21T10:00:05Z","currency":"INR"}
+{"transactionId":"tx-003","accountId":"acct-1001","amount":82.25,"merchant":"fuel","timestamp":"2026-10-21T10:00:10Z","currency":"INR"}
+{"transactionId":"tx-004","accountId":"acct-1003","amount":2500.00,"merchant":"travel","timestamp":"2026-10-21T10:00:20Z","currency":"INR"}
+{"transactionId":"tx-005","accountId":"acct-1002","amount":45.00,"merchant":"grocery","timestamp":"2026-10-21T10:00:25Z","currency":"INR"}
